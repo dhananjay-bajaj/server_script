@@ -86,7 +86,8 @@ Content-Type: text/html; charset=utf-8
             OUTPUT=OUTPUT.split("\\n")
             OUTPUT=list(map(designthis,OUTPUT))
             OUTPUT=make_page_from_list(OUTPUT)
-            CLIENT_CONNECTION.sendall(bytes(HEADER+OUTPUT,'utf-8'))
+            mediate="<html><head><title>Directory listing</title></head><body><h3 style='color:blue;'>Contents of directory:</h3>"
+            CLIENT_CONNECTION.sendall(bytes(HEADER+mediate+OUTPUT,'utf-8'))
         except KeyboardInterrupt:
             print('\n[*]Shutting down server')
             sys.exit()
